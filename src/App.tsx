@@ -1,7 +1,8 @@
 import "./App.css";
+import Header from "./components/Header";
 
 function App() {
-  return <h1>The Weather App</h1>;
+  return <Header></Header>;
 }
 
 export default App;

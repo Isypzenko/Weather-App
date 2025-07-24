@@ -1,0 +1,15 @@
+.container-geo {
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+}
+
+.container-geo-icon {
+  position: static;
+  margin-right: 8px;
+}
+
+.container-text-location {
+  font-size: 20px;
+  color: #d3d1d1;
+}

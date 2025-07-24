@@ -1,0 +1,37 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  /* background: #2c3e50; */
+  border: 1px solid #ecf0f1;
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: #ecf0f1;
+}
+
+.input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-size: 1rem;
+  padding: 4px 8px;
+}
+
+.icon {
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.input:focus {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
