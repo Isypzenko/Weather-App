@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -23,4 +25,10 @@ button {
   -moz-appearance: none;
   /* сброс в Firefox */
   appearance: none;
+}
+
+body {
+  background: #1c2731;
+  font-family: 'Inter', sans-serif;
+
 }

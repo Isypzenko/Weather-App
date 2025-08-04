@@ -1,0 +1,41 @@
+.wrapper {
+  border: 1px solid #2c3e50;
+  background: #283a4b;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px 32px;
+  max-width: 500px;
+  padding: 50px;
+  border-radius: 10px;
+}
+
+.wrapper>div {
+  background: #2c3e50;
+  box-shadow: 3px 2px 5px;
+  color: #ecf0f1;
+  border-radius: 10px;
+  padding: 18px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.data-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+}
+
+/* .weather-precip {}
+
+.weather-wind {}
+
+.weather-humidity {}
+
+.weather-uv {}
+
+.weather-clouds {}
+
+.weather-visibility {} */

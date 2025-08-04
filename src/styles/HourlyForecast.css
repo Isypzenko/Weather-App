@@ -1,0 +1,36 @@
+.hourly-container {
+  display: flex;
+  margin-top: 40px;
+  justify-content: center;
+  color: aliceblue;
+}
+
+.hourly-container-item {
+  background: #2c3e50;
+  padding: 14px 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.hourly-precipitation {
+  display: flex;
+  position: relative;
+}
+
+.hourly-precipitation>span {
+  position: static;
+  margin-right: 4px;
+}
+
+.hourly-wind {
+  display: flex;
+  position: relative;
+}
+
+.hourly-wind>span {
+  position: static;
+  margin-right: 6px;
+}
