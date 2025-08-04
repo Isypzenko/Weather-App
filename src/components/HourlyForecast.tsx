@@ -7,6 +7,7 @@ interface Props {}
 const HourlyForecast: React.FC<Props> = ({}) => {
   return (
     <>
+      <h3>Hourly Forecast</h3>
       <div className="hourly-container">
         <div className="hourly-container-item">
           <div className="hourly-time">10:00</div>

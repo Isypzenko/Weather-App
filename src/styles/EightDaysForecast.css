@@ -1,11 +1,8 @@
-* {
-  color: aliceblue;
-}
-
-.hourly-container {
+.week-container {
   display: flex;
   margin-top: 40px;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 h3 {
@@ -14,7 +11,11 @@ h3 {
   justify-content: center;
 }
 
-.hourly-container-item {
+h5 {
+  margin-bottom: 10px;
+}
+
+.week-container-item {
   background: #2c3e50;
   padding: 14px 20px;
   border-radius: 10px;
@@ -24,22 +25,12 @@ h3 {
   gap: 10px;
 }
 
-.hourly-precipitation {
+.precipitation {
   display: flex;
   position: relative;
 }
 
-.hourly-precipitation>span {
+.precipitation>span {
   position: static;
   margin-right: 4px;
-}
-
-.hourly-wind {
-  display: flex;
-  position: relative;
-}
-
-.hourly-wind>span {
-  position: static;
-  margin-right: 6px;
 }
