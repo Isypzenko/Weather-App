@@ -4,15 +4,24 @@ import styles from "../../styles/IconInput.module.css";
 
 interface IconInputProps {
   value: string;
-  onKeyUp: React.KeyboardEventHandler<HTMLInputElement>;
+  onKeyDown: (city: string) => void;
   placeholder?: string;
 }
 
 const IconInput: React.FC<IconInputProps> = function ({
   placeholder,
-  onKeyUp,
+  onKeyDown,
 }) {
-  let [value, setValue] = useState<string>();
+  interface CheckKeyUpEvent extends React.KeyboardEvent<HTMLInputElement> {}
+
+  let [city, setCity] = useState<string>("");
+
+  const checkKeyDown = function (e: CheckKeyUpEvent) {
+    if (e.code === "Enter") {
+      onKeyDown(city);
+      setCity("");
+    }
+  };
   return (
     <div className={styles.wrapper}>
       <span className={styles.icon}>
@@ -20,8 +29,9 @@ const IconInput: React.FC<IconInputProps> = function ({
       </span>
       <input
         type="text"
-        value={value}
-        onKeyUp={onKeyUp}
+        value={city}
+        onChange={(e) => setCity(e.target.value)}
+        onKeyDown={(e) => checkKeyDown(e)}
         placeholder={placeholder}
         className={styles.input}
       />

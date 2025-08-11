@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
+body {
+  min-width: 400px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -7,23 +11,21 @@
 
 button {
   background: none;
-  /* убираем фон */
   border: none;
-  /* убираем рамку */
+
   padding: 0;
-  /* убираем отступы */
+
   margin: 0;
-  /* убираем внешние отступы */
   font: inherit;
-  /* наследуем шрифт */
+
   color: inherit;
-  /* наследуем цвет текста */
+
   line-height: inherit;
   cursor: pointer;
   -webkit-appearance: none;
-  /* сброс нативного стиля в WebKit */
+
   -moz-appearance: none;
-  /* сброс в Firefox */
+
   appearance: none;
 }
 

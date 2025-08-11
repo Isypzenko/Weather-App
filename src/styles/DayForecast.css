@@ -36,3 +36,35 @@
   font-size: 22px;
   margin-top: 6px;
 }
+
+@media screen and (max-width:500px) {
+  .weather-icon {
+    margin-bottom: 18px;
+  }
+
+  .weather-temp {
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+
+  .weather-feel {
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
+
+  .weather-text {
+    font-size: 14px;
+    margin-top: 6px;
+  }
+
+  .forecast-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .wrapper-forecast {
+    padding: 20px;
+    margin: 0 auto;
+  }
+
+}

@@ -1,23 +1,22 @@
 import React from "react";
-import { FaLocationDot } from "react-icons/fa6";
 import IconInput from "./UI/Input";
 import ButtonSettings from "./UI/ButtonSettings";
 import GeoLocation from "./UI/GeoLocation";
 import "../styles/Header.css";
 
-const Header = () => {
-  const inputKeyUphandler = function (e) {
-    if (e.key === "Enter") {
-      console.log("Searching");
-    }
-  };
+interface HeaderProps {
+  label: string;
+  fetchDataCityWeather: (city: string) => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ fetchDataCityWeather, label }) => {
   return (
     <header>
-      <GeoLocation label={"Your Location"}></GeoLocation>
+      <GeoLocation label={label}></GeoLocation>
       <div className="input-location">
         <IconInput
           value=""
-          onKeyUp={inputKeyUphandler}
+          onKeyDown={fetchDataCityWeather}
           placeholder="Search..."
         ></IconInput>
       </div>
