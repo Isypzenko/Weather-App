@@ -10,7 +10,7 @@ interface Props {
   temp: number;
   feels_like: number;
   weather_data: WeatherDescription[];
-  details: CurrentWeatherDetail | null;
+  details: CurrentWeatherDetail;
 }
 
 const DayForecast: React.FC<Props> = ({
@@ -32,6 +32,7 @@ const DayForecast: React.FC<Props> = ({
           {temp ? `${Math.round(Number(temp))} °C` : "Error"}
         </div>
         <div className="weather-feel">
+          <span>feels like </span>
           {feels_like ? `${Math.round(Number(feels_like))} °C` : "Error"}
         </div>
         <div className="weather-text">

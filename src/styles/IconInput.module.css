@@ -17,6 +17,13 @@
   padding: 4px 8px;
 }
 
+.inputError {
+  border: 1px solid #e74c3c;
+  transition: border-color 0.2s;
+
+}
+
+
 .icon {
   margin-right: 8px;
   display: flex;

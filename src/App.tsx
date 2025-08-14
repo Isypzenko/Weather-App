@@ -3,14 +3,12 @@ import Header from "./components/Header";
 import DayForecast from "./components/DayForecast";
 import HourlyForecast from "./components/HourlyForecast";
 import EightDaysForecast from "./components/EightDaysForecast";
+import ErrorWindow from "./components/UI/ErrorWindow";
 import { useEffect, useState } from "react";
 import { geoCodingByCityName, getForecast } from "./api/weather";
 import type {
-  GeoData,
-  WeatherDescription,
   CurrentWeatherDetail,
   CurrentWeather,
-  ForecastResponse,
 } from "./types/weatherTypes";
 
 function App() {
@@ -18,15 +16,18 @@ function App() {
   let [weather, setWeather] = useState<CurrentWeather>();
   let [weatherDetails, setWeatherDetails] =
     useState<CurrentWeatherDetail | null>(null);
+  let [errorInput, setErrorInput] = useState<boolean>(false);
 
   useEffect(() => {
     if (!city) return;
     const fetchData = async () => {
       try {
         const data = await geoCodingByCityName(city);
+        setErrorInput(false);
         return data;
-      } catch (error) {
-        throw new Error("Ошибка");
+      } catch (error: any) {
+        setErrorInput(true);
+        throw new Error(error.message);
       }
     };
     const res = fetchData();
@@ -53,16 +54,21 @@ function App() {
     const regex = /\p{L}+/gu;
     const words = city.match(regex) || [];
     return words
-      .map((word) => word[0].toLocaleUpperCase() + word.slice(1))
+      .map(
+        (word) =>
+          word[0].toLocaleUpperCase() + word.slice(1).toLocaleLowerCase()
+      )
       .join(" ");
   };
   return (
     <>
+      {errorInput && <ErrorWindow></ErrorWindow>}
       <Header
+        inputError={errorInput}
         fetchDataCityWeather={setCity}
         label={makeBigFirstLetter(city)}
       ></Header>
-      {weather && weatherDetails && (
+      {weather && weatherDetails && !errorInput && (
         <DayForecast
           temp={weather.temp}
           feels_like={weather.feels_like}

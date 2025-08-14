@@ -6,11 +6,13 @@ interface IconInputProps {
   value: string;
   onKeyDown: (city: string) => void;
   placeholder?: string;
+  inputError: boolean;
 }
 
 const IconInput: React.FC<IconInputProps> = function ({
   placeholder,
   onKeyDown,
+  inputError,
 }) {
   interface CheckKeyUpEvent extends React.KeyboardEvent<HTMLInputElement> {}
 
@@ -23,7 +25,7 @@ const IconInput: React.FC<IconInputProps> = function ({
     }
   };
   return (
-    <div className={styles.wrapper}>
+    <div className={`${styles.wrapper} ${inputError ? styles.inputError : ""}`}>
       <span className={styles.icon}>
         <FaSearch color="#ecf0f1" />
       </span>

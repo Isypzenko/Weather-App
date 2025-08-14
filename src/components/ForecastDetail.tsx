@@ -9,7 +9,7 @@ import { MdOutlineVisibility } from "react-icons/md";
 
 import type { CurrentWeatherDetail } from "../types/weatherTypes";
 interface Props {
-  details: CurrentWeatherDetail | null;
+  details: CurrentWeatherDetail;
 }
 
 const ForecastDetail: React.FC<Props> = ({ details }) => {
@@ -54,7 +54,9 @@ const ForecastDetail: React.FC<Props> = ({ details }) => {
         <div className="weather-visibility">
           <div className="data-container">
             <MdOutlineVisibility />
-            <span>{details?.visibility} m</span>
+            <span>{`${Math.round(details?.visibility / 1000).toFixed(
+              1
+            )} km`}</span>
           </div>
           <span>Visibility</span>
         </div>

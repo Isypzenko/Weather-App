@@ -7,14 +7,20 @@ import "../styles/Header.css";
 interface HeaderProps {
   label: string;
   fetchDataCityWeather: (city: string) => void;
+  inputError: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ fetchDataCityWeather, label }) => {
+const Header: React.FC<HeaderProps> = ({
+  fetchDataCityWeather,
+  label,
+  inputError,
+}) => {
   return (
     <header>
-      <GeoLocation label={label}></GeoLocation>
+      <GeoLocation label={inputError ? "Error" : label}></GeoLocation>
       <div className="input-location">
         <IconInput
+          inputError={inputError}
           value=""
           onKeyDown={fetchDataCityWeather}
           placeholder="Search..."

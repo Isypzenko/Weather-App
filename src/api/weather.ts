@@ -15,7 +15,6 @@ export async function geoCodingByCityName(city: string) {
   if (data.length === 0) {
     throw new Error("Город не найден");
   }
-
   const { lat, lon } = data[0];
   return { lat, lon };
 }
