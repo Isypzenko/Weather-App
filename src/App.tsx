@@ -5,50 +5,11 @@ import HourlyForecast from "./components/HourlyForecast";
 import EightDaysForecast from "./components/EightDaysForecast";
 import ErrorWindow from "./components/UI/ErrorWindow";
 import { useEffect, useState } from "react";
-import { geoCodingByCityName, getForecast } from "./api/weather";
-import type {
-  CurrentWeatherDetail,
-  CurrentWeather,
-} from "./types/weatherTypes";
+import { useWeather } from "./hooks/useWeather";
 
 function App() {
   let [city, setCity] = useState("");
-  let [weather, setWeather] = useState<CurrentWeather>();
-  let [weatherDetails, setWeatherDetails] =
-    useState<CurrentWeatherDetail | null>(null);
-  let [errorInput, setErrorInput] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (!city) return;
-    const fetchData = async () => {
-      try {
-        const data = await geoCodingByCityName(city);
-        setErrorInput(false);
-        return data;
-      } catch (error: any) {
-        setErrorInput(true);
-        throw new Error(error.message);
-      }
-    };
-    const res = fetchData();
-    res
-      .then((res) => getForecast(res.lat, res.lon))
-      .then((res) => {
-        setWeather(res.current);
-
-        const { pressure, humidity, wind_speed, uvi, clouds, visibility } =
-          res.current;
-        const detailsObj: CurrentWeatherDetail = {
-          pressure,
-          wind_speed,
-          uvi,
-          clouds,
-          visibility,
-          humidity,
-        };
-        setWeatherDetails(detailsObj);
-      });
-  }, [city]);
+  let { weather, weatherDetails, errorInput } = useWeather(city);
   const makeBigFirstLetter = (city: string): string => {
     if (!city) return "Your Location";
     const regex = /\p{L}+/gu;

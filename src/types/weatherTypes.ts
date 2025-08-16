@@ -19,6 +19,7 @@ export interface CurrentWeatherDetail {
   visibility: number;
   humidity: number;
 }
+
 export interface ForecastResponse {
   current: CurrentWeather;
 }
