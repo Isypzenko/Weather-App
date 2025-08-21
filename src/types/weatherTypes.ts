@@ -5,6 +5,30 @@ export interface WeatherDescription {
   icon: string;
 }
 
+interface tempWeather {
+  day: number;
+  min: number;
+  max: number;
+}
+
+export interface DailyWeather {
+  dt: number;
+  weather: WeatherDescription[];
+  temp: tempWeather;
+}
+
+interface HourlyWeatherDetail {
+  icon: string;
+}
+
+export interface HourlyWeather {
+  dt: number;
+  temp: string;
+  clouds: number;
+  wind_speed: number;
+  weather: HourlyWeatherDetail[];
+}
+
 export interface CurrentWeather {
   temp: number;
   feels_like: number;

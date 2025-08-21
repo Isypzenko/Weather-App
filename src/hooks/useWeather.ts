@@ -4,16 +4,22 @@ import { getForecast } from "../api/weather";
 import type {
   CurrentWeather,
   CurrentWeatherDetail,
+  HourlyWeather,
+  DailyWeather,
 } from "../types/weatherTypes";
 
 interface UseWeatherResult {
   weather: CurrentWeather | null;
   weatherDetails: CurrentWeatherDetail | null;
   errorInput: boolean;
+  hourly: HourlyWeather[] | undefined;
+  daily: DailyWeather[] | null;
 }
 
 export function useWeather(city: string): UseWeatherResult {
   let [weather, setWeather] = useState<CurrentWeather | null>(null);
+  let [daily, setDaily] = useState<DailyWeather[] | null>(null);
+  let [hourly, setHourly] = useState<HourlyWeather[]>();
   let [weatherDetails, setWeatherDetails] =
     useState<CurrentWeatherDetail | null>(null);
   let [errorInput, setErrorInput] = useState<boolean>(false);
@@ -34,7 +40,8 @@ export function useWeather(city: string): UseWeatherResult {
       .then((res) => getForecast(res.lat, res.lon))
       .then((res) => {
         setWeather(res.current);
-
+        setHourly(res.hourly);
+        setDaily(res.daily);
         const { pressure, humidity, wind_speed, uvi, clouds, visibility } =
           res.current;
         const detailsObj: CurrentWeatherDetail = {
@@ -49,5 +56,5 @@ export function useWeather(city: string): UseWeatherResult {
       });
   }, [city]);
 
-  return { weather, weatherDetails, errorInput };
+  return { weather, weatherDetails, errorInput, hourly, daily };
 }

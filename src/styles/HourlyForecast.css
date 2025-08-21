@@ -8,6 +8,10 @@
   justify-content: center;
 }
 
+.hourly-time {
+  text-align: center;
+}
+
 h3 {
   display: flex;
   margin-top: 30px;
@@ -24,22 +28,23 @@ h3 {
   gap: 10px;
 }
 
-.hourly-precipitation {
+.hourly-clouds {
   display: flex;
   position: relative;
 }
 
-.hourly-precipitation>span {
+.hourly-clouds>span {
   position: static;
-  margin-right: 4px;
+  margin-left: 4px;
 }
 
 .hourly-wind {
-  display: flex;
-  position: relative;
+  display: inline-flex;
+  align-items: center;
 }
 
 .hourly-wind>span {
-  position: static;
-  margin-right: 6px;
+  font-size: 16px;
+  /* position: static; */
+  /* margin-right: 6px; */
 }
