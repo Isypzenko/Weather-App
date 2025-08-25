@@ -6,6 +6,7 @@ import EightDaysForecast from "./components/EightDaysForecast";
 import ErrorWindow from "./components/UI/ErrorWindow";
 import { useState } from "react";
 import { useWeather } from "./hooks/useWeather";
+import { GoContainer } from "react-icons/go";
 
 function App() {
   let [city, setCity] = useState("");
@@ -40,15 +41,19 @@ function App() {
       )}
       {TwentyFourHours && <h3>Hourly Forecast</h3>}
       {TwentyFourHours && (
-        <div className="hourly-row-container hourly-scroll">
+        <div className="row-container scroll">
           {TwentyFourHours &&
             TwentyFourHours.map((hour: any) => (
               <HourlyForecast key={hour.dt} data={hour} />
             ))}
         </div>
       )}
-
-      {daily && <EightDaysForecast data={daily}></EightDaysForecast>}
+      {daily && <h3>Eight-day forecast</h3>}
+      {daily && (
+        <div className="row-container scroll">
+          <EightDaysForecast data={daily}></EightDaysForecast>
+        </div>
+      )}
     </>
   );
 }

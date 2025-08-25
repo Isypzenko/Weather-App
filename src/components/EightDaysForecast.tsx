@@ -1,7 +1,11 @@
 import "../styles/EightDaysForecast.css";
 import type React from "react";
 import type { DailyWeather } from "../types/weatherTypes";
-import { dateFormater, getFormatDate } from "../helpers/date-helper";
+import {
+  dateFormater,
+  getFormatDate,
+  formatDateOrToday,
+} from "../helpers/date-helper";
 
 interface Props {
   data: DailyWeather[] | null;
@@ -11,14 +15,11 @@ const EightDaysForecast: React.FC<Props> = ({ data }) => {
   console.log(data);
   return (
     <>
-      <h3>Eight-day forecast</h3>
       {data?.map((weather: DailyWeather) => {
-        const { day: date, month, year } = dateFormater(weather.dt);
+        const date = formatDateOrToday(weather.dt);
         return (
           <div className="week-container" key={weather.dt}>
-            <h5>
-              {getFormatDate(date)}.{getFormatDate(month)}.{getFormatDate(year)}
-            </h5>
+            <h5>{date}</h5>
             <div className="week-container-item">
               <div className="week-icon">
                 <img
@@ -30,13 +31,11 @@ const EightDaysForecast: React.FC<Props> = ({ data }) => {
                 {weather.temp.max
                   ? `${Math.round(Number(weather.temp.max))} °C`
                   : "Error"}
-                °C
               </div>
               <div className="min-temp">
                 {weather.temp.min
                   ? `${Math.round(Number(weather.temp.min))} °C`
                   : "Error"}
-                °C
               </div>
               <div className="description">
                 <span>{weather.weather[0].main}</span>
@@ -45,7 +44,7 @@ const EightDaysForecast: React.FC<Props> = ({ data }) => {
           </div>
         );
       })}
-      <div className="week-container">
+      {/* <div className="week-container">
         <h5>Today</h5>
         <div className="week-container-item">
           <div className="week-icon">
@@ -60,7 +59,7 @@ const EightDaysForecast: React.FC<Props> = ({ data }) => {
             <span></span>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };

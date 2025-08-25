@@ -3,19 +3,19 @@ import type React from "react";
 import { BsFillCloudsFill } from "react-icons/bs";
 import { LuWind } from "react-icons/lu";
 import type { HourlyWeather } from "../types/weatherTypes";
-import { dateFormater, getFormatDate } from "../helpers/date-helper";
+import {
+  dateFormater,
+  formatDateOrToday,
+  getFormatDate,
+} from "../helpers/date-helper";
 
 interface Props {
   data: HourlyWeather;
 }
 
 const HourlyForecast: React.FC<Props> = ({ data }) => {
-  const { day: date, month, year, hours, minutes } = dateFormater(data.dt);
-
-  // const getFormatDate = function (date: number): string {
-  //   return `${date < 10 ? `0${date}` : date}`;
-  // };
-
+  const { hours, minutes } = dateFormater(data.dt);
+  const date = formatDateOrToday(data.dt);
   return (
     <>
       <div className="hourly-container">
@@ -23,7 +23,7 @@ const HourlyForecast: React.FC<Props> = ({ data }) => {
           <div className="hourly-time">
             {getFormatDate(hours)}:{getFormatDate(minutes)}
             <br />
-            {getFormatDate(date)}.{getFormatDate(month)}.{getFormatDate(year)}
+            {date}
           </div>
           <div className="hourly-icon">
             <img

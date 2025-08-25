@@ -1,14 +1,14 @@
-.hourly-row-container {
+.row-container {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   gap: 20px;
 }
 
-.hourly-scroll {
+.scroll {
   overflow-x: auto;
   scrollbar-width: thin;
-
+  padding-bottom: 10px;
   scrollbar-color: #4a5568 #2d3748;
 
 }
