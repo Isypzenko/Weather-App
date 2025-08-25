@@ -14,9 +14,11 @@ interface UseWeatherResult {
   errorInput: boolean;
   hourly: HourlyWeather[] | undefined;
   daily: DailyWeather[] | null;
+  isLoading: boolean;
 }
 
 export function useWeather(city: string): UseWeatherResult {
+  let [isLoading, setLoading] = useState<boolean>(false);
   let [weather, setWeather] = useState<CurrentWeather | null>(null);
   let [daily, setDaily] = useState<DailyWeather[] | null>(null);
   let [hourly, setHourly] = useState<HourlyWeather[]>();
@@ -27,15 +29,18 @@ export function useWeather(city: string): UseWeatherResult {
     if (!city) return;
     const fetchData = async () => {
       try {
+        setLoading(true);
         const data = await geoCodingByCityName(city);
         setErrorInput(false);
         return data;
       } catch (error: any) {
         setErrorInput(true);
+        setLoading(false);
         throw new Error(error.message);
       }
     };
     const res = fetchData();
+    setLoading(true);
     res
       .then((res) => getForecast(res.lat, res.lon))
       .then((res) => {
@@ -53,8 +58,10 @@ export function useWeather(city: string): UseWeatherResult {
           humidity,
         };
         setWeatherDetails(detailsObj);
-      });
+        setLoading(false);
+      })
+      .catch((err) => console.log(err));
   }, [city]);
 
-  return { weather, weatherDetails, errorInput, hourly, daily };
+  return { weather, weatherDetails, errorInput, hourly, daily, isLoading };
 }
