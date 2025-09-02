@@ -8,12 +8,14 @@ import { useState } from "react";
 import { useWeather } from "./hooks/useWeather";
 import { Loader } from "./components/UI/Loader.module";
 import { makeBigFirstLetter } from "./helpers/letter-formatter";
+import type { HourlyWeather } from "./types/weatherTypes";
 
 function App() {
   let [city, setCity] = useState("");
   let { weather, weatherDetails, errorInput, hourly, daily, isLoading } =
     useWeather(city);
   let TwentyFourHours = hourly?.slice(0, 24);
+
   return (
     <>
       {isLoading && <Loader></Loader>}
@@ -36,14 +38,14 @@ function App() {
         <div className="row-container scroll">
           {TwentyFourHours &&
             !errorInput &&
-            TwentyFourHours.map((hour: any) => (
+            TwentyFourHours.map((hour: HourlyWeather) => (
               <HourlyForecast key={hour.dt} data={hour} />
             ))}
         </div>
       )}
       {daily && !errorInput && <h3>Eight-day forecast</h3>}
       {daily && !errorInput && (
-        <div className="row-container scroll">
+        <div className="row-container row-container--daily scroll">
           <EightDaysForecast data={daily}></EightDaysForecast>
         </div>
       )}

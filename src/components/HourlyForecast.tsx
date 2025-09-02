@@ -14,6 +14,8 @@ interface Props {
 }
 
 const HourlyForecast: React.FC<Props> = ({ data }) => {
+  console.log(data);
+  console.log(new Date(data.dt * 1000));
   const { hours, minutes } = dateFormater(data.dt);
   const date = formatDateOrToday(data.dt);
   return (

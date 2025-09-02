@@ -1,9 +1,12 @@
 .row-container {
   display: flex;
-  justify-content: center;
   flex-direction: row;
   flex-wrap: nowrap;
   gap: 20px;
+}
+
+.row-container--daily {
+  justify-content: center;
 }
 
 .scroll {
