@@ -7,7 +7,7 @@ import "../styles/Header.css";
 interface HeaderProps {
   label: string;
   fetchDataCityWeather: (city: string) => void;
-  inputError: boolean;
+  inputError: boolean | undefined;
 }
 
 const Header: React.FC<HeaderProps> = ({

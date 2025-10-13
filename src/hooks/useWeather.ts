@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
 import { geoCodingByCityName } from "../api/weather";
 import { getForecast } from "../api/weather";
+import { useQuery } from "@tanstack/react-query";
 import type {
   CurrentWeather,
   CurrentWeatherDetail,
@@ -18,50 +18,40 @@ interface UseWeatherResult {
 }
 
 export function useWeather(city: string): UseWeatherResult {
-  let [isLoading, setLoading] = useState<boolean>(false);
-  let [weather, setWeather] = useState<CurrentWeather | null>(null);
-  let [daily, setDaily] = useState<DailyWeather[] | null>(null);
-  let [hourly, setHourly] = useState<HourlyWeather[]>();
-  let [weatherDetails, setWeatherDetails] =
-    useState<CurrentWeatherDetail | null>(null);
-  let [errorInput, setErrorInput] = useState<boolean>(false);
-  useEffect(() => {
-    if (!city) return;
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const data = await geoCodingByCityName(city);
-        setErrorInput(false);
-        return data;
-      } catch (error: any) {
-        setErrorInput(true);
-        setLoading(false);
-        throw new Error(error.message);
+  const geoQuery = useQuery({
+    queryKey: ["geoCoding", city],
+    queryFn: () => geoCodingByCityName(city),
+    enabled: city.trim().length > 0,
+    staleTime: 1000 * 60 * 10,
+    retry: 1,
+  });
+
+  const forecastQuery = useQuery({
+    queryKey: ["forecast", geoQuery.data?.lat, geoQuery.data?.lon],
+    queryFn: () => getForecast(geoQuery.data!.lat, geoQuery.data!.lon),
+    enabled: Boolean(geoQuery.data),
+    staleTime: 1000 * 60 * 5,
+    retry: 2,
+  });
+
+  const isLoading = geoQuery.isLoading || forecastQuery.isLoading;
+  const errorInput = geoQuery.isError || forecastQuery.isError;
+  const data = forecastQuery.data;
+
+  const weather = data?.current ?? null;
+  const weatherDetails = data
+    ? {
+        pressure: data.current.pressure,
+        humidity: data.current.humidity,
+        wind_speed: data.current.wind_speed,
+        uvi: data.current.uvi,
+        clouds: data.current.clouds,
+        visibility: data.current.visibility,
       }
-    };
-    const res = fetchData();
-    setLoading(true);
-    res
-      .then((res) => getForecast(res.lat, res.lon))
-      .then((res) => {
-        setWeather(res.current);
-        setHourly(res.hourly);
-        setDaily(res.daily);
-        const { pressure, humidity, wind_speed, uvi, clouds, visibility } =
-          res.current;
-        const detailsObj: CurrentWeatherDetail = {
-          pressure,
-          wind_speed,
-          uvi,
-          clouds,
-          visibility,
-          humidity,
-        };
-        setWeatherDetails(detailsObj);
-        setLoading(false);
-      })
-      .catch((err) => console.log(err));
-  }, [city]);
+    : null;
+
+  const hourly = data?.hourly;
+  const daily = data?.daily ?? null;
 
   return { weather, weatherDetails, errorInput, hourly, daily, isLoading };
 }

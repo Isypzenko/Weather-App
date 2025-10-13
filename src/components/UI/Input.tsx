@@ -6,7 +6,7 @@ interface IconInputProps {
   value: string;
   onKeyDown: (city: string) => void;
   placeholder?: string;
-  inputError: boolean;
+  inputError: boolean | undefined;
 }
 
 const IconInput: React.FC<IconInputProps> = function ({

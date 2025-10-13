@@ -4,7 +4,7 @@ import DayForecast from "./components/DayForecast";
 import HourlyForecast from "./components/HourlyForecast";
 import EightDaysForecast from "./components/EightDaysForecast";
 import ErrorWindow from "./components/UI/ErrorWindow";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useWeather } from "./hooks/useWeather";
 import { Loader } from "./components/UI/Loader.module";
 import { makeBigFirstLetter } from "./helpers/letter-formatter";
@@ -13,8 +13,8 @@ import type { HourlyWeather } from "./types/weatherTypes";
 function App() {
   let [city, setCity] = useState("");
   let { weather, weatherDetails, errorInput, hourly, daily, isLoading } =
-    useWeather(city);
-  let TwentyFourHours = hourly?.slice(0, 24);
+    useWeather(city) ?? {};
+  const TwentyFourHours = useMemo(() => hourly?.slice(0, 24), [hourly]);
 
   return (
     <>
