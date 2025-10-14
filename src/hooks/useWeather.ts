@@ -50,7 +50,7 @@ export function useWeather(city: string): UseWeatherResult {
       }
     : null;
 
-  const hourly = data?.hourly;
+  const hourly = data?.hourly ?? null;
   const daily = data?.daily ?? null;
 
   return { weather, weatherDetails, errorInput, hourly, daily, isLoading };

@@ -16,7 +16,7 @@ h5 {
 }
 
 .week-container-item {
-  background: #2c3e50;
+  background: var(--bg-header-color);
   padding: 14px 20px;
   border-radius: 10px;
   display: flex;

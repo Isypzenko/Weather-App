@@ -1,6 +1,5 @@
 .wrapper {
-  border: 1px solid #2c3e50;
-  background: #283a4b;
+  background: var(--bg-header-color);
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 24px 32px;
@@ -10,9 +9,9 @@
 }
 
 .wrapper>div {
-  background: #2c3e50;
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
-  color: #ecf0f1;
+  background: var(--bg-color-detail);
+  box-shadow: 0 4px 12px var(--box-shadow-detail);
+  color: var(--color-detail);
   border-radius: 10px;
   padding: 18px 14px;
   display: flex;

@@ -10,6 +10,8 @@ body {
   padding: 0;
 }
 
+
+
 button {
   background: none;
   border: none;
@@ -31,7 +33,7 @@ button {
 }
 
 body {
-  background: #1c2731;
+  background: var(--bg-color);
   font-family: 'Inter', sans-serif;
 
 }

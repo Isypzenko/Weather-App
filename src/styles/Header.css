@@ -1,8 +1,9 @@
 header {
-  background: #2c3e50;
+  background: var(--bg-header-color);
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 80px;
   padding: 6px;
+  color: var(--text-color)
 }
