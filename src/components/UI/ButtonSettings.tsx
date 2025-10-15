@@ -1,5 +1,5 @@
 import React from "react";
-import { IoIosSettings } from "react-icons/io";
+import { FaMoon } from "react-icons/fa";
 import "../../styles/ButtonSettings.css";
 import { useTheme } from "../../context/ThemeContext";
 interface Props {}
@@ -22,7 +22,7 @@ const ButtonSettings: React.FC<Props> = ({}) => {
   return (
     <div className="settings">
       <button onClick={toggleTheme}>
-        <IoIosSettings size={iconSize} color="#d3d1d1" />
+        <FaMoon size={iconSize} color="#d3d1d1" />
       </button>
     </div>
   );
