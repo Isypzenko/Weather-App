@@ -5,8 +5,8 @@ const queryClient = new QueryClient();
 
 import "./index.css";
 import "./styles/theme.css";
-import App from "./App.tsx";
-import { ThemeProvider } from "./context/ThemeContext.tsx";
+import App from "./App";
+import { ThemeProvider } from "./context/ThemeContext";
 
 createRoot(document.getElementById("root")!).render(
   <QueryClientProvider client={queryClient}>
