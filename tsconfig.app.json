@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    /* Основные */
     "target": "ESNext",
     "module": "ESNext",
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
@@ -11,12 +10,10 @@
     "moduleDetection": "force",
     "noEmit": true,
 
-    /* Импорты и совместимость */
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "types": ["jest"],
 
-    /* Строгая проверка */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
