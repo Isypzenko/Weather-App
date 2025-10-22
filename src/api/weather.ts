@@ -7,7 +7,7 @@ export async function geoCodingByCityName(city: string) {
 
   const response = await fetch(url);
   if (!response.ok) {
-    throw new Error("Ошибка при геокодировании города");
+    throw new Error("Error in geocoding city");
   }
 
   const data = await response.json();
@@ -22,6 +22,6 @@ export async function getForecast(lat: number, lon: number, flag?: string) {
   const data = await res.json();
   console.log(data);
   if (data.length === 0) {
-    throw new Error("ошибка при получении погоды");
+    throw new Error("Weather error");
   } else return data;
 }

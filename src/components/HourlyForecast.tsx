@@ -14,6 +14,9 @@ interface Props {
 }
 
 const HourlyForecast: React.FC<Props> = ({ data }) => {
+  if (!data || !data.weather || !data.weather[0]) {
+    return null;
+  }
   const { hours, minutes } = dateFormater(data.dt);
   const date = formatDateOrToday(data.dt);
   return (
@@ -27,7 +30,7 @@ const HourlyForecast: React.FC<Props> = ({ data }) => {
           </div>
           <div className="hourly-icon">
             <img
-              src={`https://openweathermap.org/img/wn/${data.weather[0]["icon"]}@2x.png`}
+              src={`https://openweathermap.org/img/wn/${data?.weather[0]["icon"]}@2x.png`}
               alt="weather icon"
             />
           </div>

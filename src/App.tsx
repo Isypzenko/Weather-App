@@ -9,13 +9,12 @@ import { useWeather } from "./hooks/useWeather";
 import { Loader } from "./components/UI/Loader.module";
 import { makeBigFirstLetter } from "./helpers/letter-formatter";
 import type { HourlyWeather } from "./types/weatherTypes";
-// import { useTheme } from "./context/ThemeContext";
+
 function App() {
   let [city, setCity] = useState("");
   let { weather, weatherDetails, errorInput, hourly, daily, isLoading } =
     useWeather(city) ?? {};
   const TwentyFourHours = useMemo(() => hourly?.slice(0, 24), [hourly]);
-  // const { theme, toggleTheme } = useTheme();
 
   return (
     <>

@@ -31,6 +31,7 @@ const IconInput: React.FC<IconInputProps> = function ({
       </span>
       <input
         type="text"
+        data-testid="city-input"
         value={city}
         onChange={(e) => setCity(e.target.value)}
         onKeyDown={(e) => checkKeyDown(e)}

@@ -5,7 +5,7 @@ interface Props {}
 const ErrorWindow: React.FC<Props> = ({}) => {
   return (
     <>
-      <div className="wrapper-error">
+      <div className="wrapper-error" data-testid="error">
         <div className="wrapper-error-text">
           City is not found. Please try again
         </div>
