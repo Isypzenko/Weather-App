@@ -20,7 +20,6 @@ export async function getForecast(lat: number, lon: number, flag?: string) {
   const url: string = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=minutely,${flag},alerts&units=metric&lang=ru&appid=${API_KEY}`;
   const res = await fetch(url);
   const data = await res.json();
-  console.log(data);
   if (data.length === 0) {
     throw new Error("Weather error");
   } else return data;

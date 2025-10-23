@@ -52,7 +52,7 @@ describe("useWeather", () => {
 
   it("Should return Error when geoCodingByCityName fails", async () => {
     jest.spyOn(api, "geoCodingByCityName").mockImplementation(() => {
-      throw new Error("Ошибка геокодинга");
+      throw new Error("GeoCoding error");
     });
 
     const { result } = renderHook(() => useWeather("sejrfvwjesnkfj12"), {
